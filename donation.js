@@ -1,4 +1,47 @@
 const vendor = new Connex.Vendor("test");
+
+var signer = ""
+function signCertID() {
+  vendor
+    .sign("cert", {
+      purpose: "identification",
+      payload: {
+        type: "text",
+        content: "get signer address"
+      }
+    })
+    .request()
+    .then((r) => {
+  document.getElementById("signer").innerText = "signer: " +r.annex.signer;
+    signer = r.annex.signer
+
+    })
+    .catch((e) => document.getElementById("signer").innerText = "signer: User Canceled");
+}
+
+function signTx() {
+  if (signer == ""){
+    alert("please sign the cert first.") 
+  }else{
+    vendor
+    .sign("tx", [
+      {
+        to: "0x70aE85A2fF6030366F512DbcD60Be3828139b498",
+        //1 vet = 1e18 wei
+        value: "1000000000000000000",
+        data: "0x",
+        comment:"demo - Enfoce signer to sign the tx"
+      }
+    ])
+    //enforce signer
+  .signer(signer)
+    .comment("transaction signing - transfer 1 VET to 0x70aE85…139b498")
+    .request()
+    .then((r) => console.log(r))
+    .catch((e) => console.log("error:" + e.message));
+  }
+}
+
 var configDetails = ""
 
 function saveConfig() {
