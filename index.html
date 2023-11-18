@@ -1,6 +1,14 @@
 <h4>In this demo, it helps you to understand how to create a cluase and provide a comment to user.</h4>
 <!--Part 1: create buy me a cofffe config  -->
 <h4>Buy me a coffee</h4>
+
+<pre id="loggedIn">Please login</pre>
+
+<button id="loginBtn" onclick="login()">Login</button>
+
+<button id="logoutBtn" onclick="logout()">Logout</button>
+
+<br><br>
 <fieldset style="width:40%">
   <legend>Buy me a coffee - config</legend>
   <label for="address">Your address:</label>
@@ -23,3 +31,18 @@
 <input onclick="signTx()" type="submit" value="Buy"></input>
 </div>
 <pre id="result"></pre>
+
+<div id="item" style="display: none;">
+
+  <fieldset style="width:40%">
+    <legend>Item #1</legend>
+    <img src="https://png.pngtree.com/element_our/png/20180930/artificial--brain--intelligence-png_116457.jpg" width=100px height=100px></img>
+    <br><br>
+    <label>Skill stats: connex skill +2: <br>It helps you to understand how to get the user address and enforced(designated) the address to proceed purchase</label><br><br>
+    <input onclick="buy()" type="submit" value="Buy">
+  </fieldset>
+  <br><br>
+
+  <pre id="txidLabel"></pre>
+  <caption>brain icons Designed By test from <a href="https://pngtree.com"> Pngtree.com</a></caption>
+</div>
