@@ -1,0 +1,58 @@
+<!-- Section: Enforce the signer to sign a transaction -->
+<h3>Enforce the signer to sign a transaction</h3>
+<h5>Step 1: Get Signer</h5>
+<button onclick="signCertID()">cert-identification</button>
+<pre id="signer">signer: --</pre>
+
+<h5>Step 2: Enforce signer to sign a transaction</h5>
+<button onclick="signTx()">Sign Transaction</button>
+
+<!-- Section: Demo and Configurations -->
+<h4>In this demo, it helps you to understand how to create a clause and provide a comment to the user.</h4>
+
+<!-- Part 1: Buy me a coffee config -->
+<h4>Buy me a coffee</h4>
+<pre id="loggedIn">Please login</pre>
+
+<button id="loginBtn" onclick="login()">Login</button>
+<button id="logoutBtn" onclick="logout()">Logout</button>
+
+<br><br>
+<form>
+  <fieldset style="width:40%">
+    <legend>Buy me a coffee - config</legend>
+    <label for="address">Your address:</label>
+    <input type="text" id="address" name="address" value="0x70aE85A2fF6030366F512DbcD60Be3828139b498"><br><br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="100">VET / cup<br><br>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message">Thanks for supporting my application 😊</textarea><br><br>
+    <input type="submit" value="Save config" onclick="saveConfig()">
+  </fieldset>
+</form>
+<br>
+
+<!-- Part 2: Button embedded in an article/application -->
+<div id="supportDiv" style="display:none">
+  <h3>Support</h3>
+  <label>Buy me a coffee</label>
+  <input type="radio" checked name="cups" id="one" value="1">1 Cup</input>
+  <input type="radio" name="cups" id="two" value="2">2 Cups</input>
+  <input type="radio" name="cups" id="three" value="3">3 Cups</input>
+  <input onclick="signTx()" type="submit" value="Buy">
+</div>
+<pre id="result"></pre>
+
+<!-- Section: Displaying items for purchase -->
+<div id="item" style="display: none;">
+  <fieldset style="width:40%">
+    <legend>Item #1</legend>
+    <img src="https://png.pngtree.com/element_our/png/20180930/artificial--brain--intelligence-png_116457.jpg" width=100px height=100px></img>
+    <br><br>
+    <label>Skill stats: connex skill +2: <br>It helps you to understand how to get the user address and enforce (designate) the address to proceed with the purchase</label><br><br>
+    <input onclick="buy()" type="submit" value="Buy">
+  </fieldset>
+  <br><br>
+  <pre id="txidLabel"></pre>
+  <caption>Brain icons Designed By test from <a href="https://pngtree.com">Pngtree.com</a></caption>
+</div>
