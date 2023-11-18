@@ -1,0 +1,25 @@
+<h4>In this demo, it helps you to understand how to create a cluase and provide a comment to user.</h4>
+<!--Part 1: create buy me a cofffe config  -->
+<h4>Buy me a coffee</h4>
+<fieldset style="width:40%">
+  <legend>Buy me a coffee - config</legend>
+  <label for="address">Your address:</label>
+  <input type="text" id="address" name="address" value="0x70aE85A2fF6030366F512DbcD60Be3828139b498"><br><br>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" value="100">VET / cup<br><br>
+  <label for="message">Message:</label>
+ <textarea id="message" name="message">Thanks for supporting my apllication 😊</textarea><br><br>
+  <input type="submit" value="Save config" onclick="saveConfig()"></input>
+ </fieldset>
+</form>
+<br>
+<!--Part2: a button which embed in article/application ...etcs -->
+<div id="supportDiv" style="display:none">
+<h3>Support</h3> 
+  <label>Buy me a coffee</label>
+  <input type="radio" checked name="cups" id="one" value="1">1 Cup</input>
+  <input type="radio"  name="cups" id="two" value="2">2 Cups</input>
+  <input type="radio"  name="cups"id="three" value="3">3 Cups</input>
+<input onclick="signTx()" type="submit" value="Buy"></input>
+</div>
+<pre id="result"></pre>
