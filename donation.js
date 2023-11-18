@@ -1,6 +1,8 @@
 const vendor = new Connex.Vendor("test");
 
-var signer = ""
+let signer = "";
+
+// Function to sign the certificate ID
 function signCertID() {
   vendor
     .sign("cert", {
@@ -12,56 +14,55 @@ function signCertID() {
     })
     .request()
     .then((r) => {
-  document.getElementById("signer").innerText = "signer: " +r.annex.signer;
-    signer = r.annex.signer
-
+      document.getElementById("signer").innerText = "signer: " + r.annex.signer;
+      signer = r.annex.signer;
     })
     .catch((e) => document.getElementById("signer").innerText = "signer: User Canceled");
 }
 
-function signTx() {
-  if (signer == ""){
-    alert("please sign the cert first.") 
-  }else{
+// Function to sign a transaction
+function signTransaction() {
+  if (signer === "") {
+    alert("Please sign the certificate first.");
+  } else {
     vendor
-    .sign("tx", [
-      {
-        to: "0x70aE85A2fF6030366F512DbcD60Be3828139b498",
-        //1 vet = 1e18 wei
-        value: "1000000000000000000",
-        data: "0x",
-        comment:"demo - Enfoce signer to sign the tx"
-      }
-    ])
-    //enforce signer
-  .signer(signer)
-    .comment("transaction signing - transfer 1 VET to 0x70aE85…139b498")
-    .request()
-    .then((r) => console.log(r))
-    .catch((e) => console.log("error:" + e.message));
+      .sign("tx", [
+        {
+          to: "0x70aE85A2fF6030366F512DbcD60Be3828139b498",
+          value: "1000000000000000000",
+          data: "0x",
+          comment: "demo - Enforce signer to sign the tx"
+        }
+      ])
+      .signer(signer)
+      .comment("transaction signing - transfer 1 VET to 0x70aE85…139b498")
+      .request()
+      .then((r) => console.log(r))
+      .catch((e) => console.log("error:" + e.message));
   }
 }
 
-var configDetails = ""
+// Function to save configuration details
+let configDetails = {};
 
 function saveConfig() {
   configDetails = {
     to: document.getElementById("address").value,
-    value: parseInt(document.getElementById("amount").value), 
+    value: parseInt(document.getElementById("amount").value),
     data: "0x",
     message: document.getElementById("message").value
   };
 
-  alert("Config saved,Please click BUY to continue");
-  
-document.getElementById("supportDiv").style.display="inline-block"
+  alert("Config saved. Please click BUY to continue");
+  document.getElementById("supportDiv").style.display = "inline-block";
 }
 
-function signTx() {
-  var cups = 1;
+// Function to sign a transaction based on configuration details
+function signTransactionWithConfig() {
+  let cups = 1;
   const cupsRadio = document.getElementsByName("cups");
-  
-  for (var i = 0; i < cupsRadio.length; i++) {
+
+  for (let i = 0; i < cupsRadio.length; i++) {
     if (cupsRadio[i].checked) {
       cups = cupsRadio[i].value;
     }
@@ -72,14 +73,12 @@ function signTx() {
         to: configDetails.to,
         value: configDetails.value * 1e18 * cups,
         data: configDetails.data,
-        // Click cluase to view comment
-        comment: "support " + configDetails.value*cups +" VET"
+        comment: "support " + configDetails.value * cups + " VET"
       }
     ])
     .comment(configDetails.message)
-    // .accepted(() => alert("accepted"))
     .request()
-    .then((r) => document.getElementById("result").innerText=JSON.stringify(r,null,4))
+    .then((r) => document.getElementById("result").innerText = JSON.stringify(r, null, 4))
     .catch((e) => console.log("error:" + e.message));
 }
 
